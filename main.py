@@ -7,7 +7,10 @@ def right():
     anglea=wrap.sprite.get_angle(ppackmen)
     wrap.sprite.set_angle(ppackmen,anglea+45)
 
-
+@wrap.on_key_down(wrap.K_LEFT)
+def left():
+    anglea=wrap.sprite.get_angle(ppackmen)
+    wrap.sprite.set_angle(ppackmen,anglea-45)
 
 
 
