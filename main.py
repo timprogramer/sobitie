@@ -2,6 +2,7 @@ import wrap,time
 wrap.world.create_world(400,400,200,200)
 ppackmen=wrap.sprite.add("pacman",100,200,"player2")
 strawberry=wrap.sprite.add("pacman",0,0,"item_strawberry",visible=False)
+wrap.world.set_back_color(255, 255, 255)
 
 @wrap.on_key_always(wrap.K_RIGHT)
 def right():
@@ -31,15 +32,21 @@ def movemouse(pos_x,pos_y):
 
 @wrap.on_mouse_down(wrap.BUTTON_LEFT)
 def run(pos_x,pos_y):
-    wrap.sprite.set_angle_to_point(ppackmen,pos_x,pos_y)
+    if wrap.sprite.is_visible(strawberry) == True:
+        wrap.sprite.set_angle_to_point(ppackmen,pos_x,pos_y)
+        wrap.sprite.move_at_angle_dir(ppackmen,2)
 
+@wrap.on_mouse_move()
+def runmove(pos_x,pos_y):
+    if wrap.sprite.is_visible(strawberry) == True:
+        wrap.sprite.set_angle_to_point(ppackmen,pos_x,pos_y)
+        wrap.sprite.move_at_angle_dir(ppackmen,2)
 
-
-
-
-
-
-
+@wrap.on_close()
+def close():
+    pacx=wrap.sprite.get_x(ppackmen)
+    pacy=wrap.sprite.get_y(ppackmen)
+    wrap.sprite.add_text("да ну нет",pacx,pacy,"Arial")
 
 
 
